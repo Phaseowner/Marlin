@@ -253,7 +253,7 @@
 // Extruder runout prevention.
 // If the machine is idle and the temperature over MINTEMP
 // then extrude some filament every couple of SECONDS.
-//#define EXTRUDER_RUNOUT_PREVENT
+#define EXTRUDER_RUNOUT_PREVENT
 #if ENABLED(EXTRUDER_RUNOUT_PREVENT)
   #define EXTRUDER_RUNOUT_MINTEMP 190
   #define EXTRUDER_RUNOUT_SECONDS 30
@@ -277,9 +277,9 @@
  * The fan will turn on automatically whenever any stepper is enabled
  * and turn off after a set period after all steppers are turned off.
  */
-//#define USE_CONTROLLER_FAN
+#define USE_CONTROLLER_FAN
 #if ENABLED(USE_CONTROLLER_FAN)
-  //#define CONTROLLER_FAN_PIN -1        // Set a custom pin for the controller fan
+  #define CONTROLLER_FAN_PIN 4        // Set a custom pin for the controller fan
   #define CONTROLLERFAN_SECS 60          // Duration in seconds for the fan to run after all motors are disabled
   #define CONTROLLERFAN_SPEED 255        // 255 == full speed
 #endif
@@ -345,14 +345,14 @@
  * Multiple extruders can be assigned to the same pin in which case
  * the fan will turn on when any selected extruder is above the threshold.
  */
-#define E0_AUTO_FAN_PIN -1
+#define E0_AUTO_FAN_PIN 5
 #define E1_AUTO_FAN_PIN -1
 #define E2_AUTO_FAN_PIN -1
 #define E3_AUTO_FAN_PIN -1
 #define E4_AUTO_FAN_PIN -1
 #define E5_AUTO_FAN_PIN -1
 #define CHAMBER_AUTO_FAN_PIN -1
-#define EXTRUDER_AUTO_FAN_TEMPERATURE 50
+#define EXTRUDER_AUTO_FAN_TEMPERATURE 35
 #define EXTRUDER_AUTO_FAN_SPEED 255   // 255 == full speed
 
 /**
@@ -1550,79 +1550,79 @@
   #define INTERPOLATE       true  // Interpolate X/Y/Z_MICROSTEPS to 256
 
   #if AXIS_IS_TMC(X)
-    #define X_CURRENT     800  // (mA) RMS current. Multiply by 1.414 for peak current.
+    #define X_CURRENT     550  // (mA) RMS current. Multiply by 1.414 for peak current.
     #define X_MICROSTEPS   16  // 0..256
     #define X_RSENSE     0.11
   #endif
 
   #if AXIS_IS_TMC(X2)
-    #define X2_CURRENT    800
+    #define X2_CURRENT    550
     #define X2_MICROSTEPS  16
     #define X2_RSENSE    0.11
   #endif
 
   #if AXIS_IS_TMC(Y)
-    #define Y_CURRENT     800
+    #define Y_CURRENT     550
     #define Y_MICROSTEPS   16
     #define Y_RSENSE     0.11
   #endif
 
   #if AXIS_IS_TMC(Y2)
-    #define Y2_CURRENT    800
+    #define Y2_CURRENT    550
     #define Y2_MICROSTEPS  16
     #define Y2_RSENSE    0.11
   #endif
 
   #if AXIS_IS_TMC(Z)
-    #define Z_CURRENT     800
+    #define Z_CURRENT     550
     #define Z_MICROSTEPS   16
     #define Z_RSENSE     0.11
   #endif
 
   #if AXIS_IS_TMC(Z2)
-    #define Z2_CURRENT    800
+    #define Z2_CURRENT    550
     #define Z2_MICROSTEPS  16
     #define Z2_RSENSE    0.11
   #endif
 
   #if AXIS_IS_TMC(Z3)
-    #define Z3_CURRENT    800
+    #define Z3_CURRENT    550
     #define Z3_MICROSTEPS  16
     #define Z3_RSENSE    0.11
   #endif
 
   #if AXIS_IS_TMC(E0)
-    #define E0_CURRENT    800
+    #define E0_CURRENT    550
     #define E0_MICROSTEPS  16
     #define E0_RSENSE    0.11
   #endif
 
   #if AXIS_IS_TMC(E1)
-    #define E1_CURRENT    800
+    #define E1_CURRENT    550
     #define E1_MICROSTEPS  16
     #define E1_RSENSE    0.11
   #endif
 
   #if AXIS_IS_TMC(E2)
-    #define E2_CURRENT    800
+    #define E2_CURRENT    550
     #define E2_MICROSTEPS  16
     #define E2_RSENSE    0.11
   #endif
 
   #if AXIS_IS_TMC(E3)
-    #define E3_CURRENT    800
+    #define E3_CURRENT    550
     #define E3_MICROSTEPS  16
     #define E3_RSENSE    0.11
   #endif
 
   #if AXIS_IS_TMC(E4)
-    #define E4_CURRENT    800
+    #define E4_CURRENT    550
     #define E4_MICROSTEPS  16
     #define E4_RSENSE    0.11
   #endif
 
   #if AXIS_IS_TMC(E5)
-    #define E5_CURRENT    800
+    #define E5_CURRENT    550
     #define E5_MICROSTEPS  16
     #define E5_RSENSE    0.11
   #endif
@@ -1631,14 +1631,14 @@
    * Override default SPI pins for TMC2130, TMC2160, TMC2660, TMC5130 and TMC5160 drivers here.
    * The default pins can be found in your board's pins file.
    */
-  //#define X_CS_PIN          -1
-  //#define Y_CS_PIN          -1
-  //#define Z_CS_PIN          -1
+  #define X_CS_PIN          63
+  #define Y_CS_PIN          40
+  #define Z_CS_PIN          42
   //#define X2_CS_PIN         -1
   //#define Y2_CS_PIN         -1
   //#define Z2_CS_PIN         -1
   //#define Z3_CS_PIN         -1
-  //#define E0_CS_PIN         -1
+  #define E0_CS_PIN         65
   //#define E1_CS_PIN         -1
   //#define E2_CS_PIN         -1
   //#define E3_CS_PIN         -1
@@ -1671,7 +1671,7 @@
    */
   #define STEALTHCHOP_XY
   #define STEALTHCHOP_Z
-  #define STEALTHCHOP_E
+  //#define STEALTHCHOP_E
 
   /**
    * Optimize spreadCycle chopper parameters by using predefined parameter sets
@@ -1717,13 +1717,13 @@
    */
   //#define HYBRID_THRESHOLD
 
-  #define X_HYBRID_THRESHOLD     100  // [mm/s]
-  #define X2_HYBRID_THRESHOLD    100
-  #define Y_HYBRID_THRESHOLD     100
-  #define Y2_HYBRID_THRESHOLD    100
-  #define Z_HYBRID_THRESHOLD       3
-  #define Z2_HYBRID_THRESHOLD      3
-  #define Z3_HYBRID_THRESHOLD      3
+  #define X_HYBRID_THRESHOLD     80  // [mm/s]
+  #define X2_HYBRID_THRESHOLD    80
+  #define Y_HYBRID_THRESHOLD     80
+  #define Y2_HYBRID_THRESHOLD    80
+  #define Z_HYBRID_THRESHOLD       4
+  #define Z2_HYBRID_THRESHOLD      4
+  #define Z3_HYBRID_THRESHOLD      4
   #define E0_HYBRID_THRESHOLD     30
   #define E1_HYBRID_THRESHOLD     30
   #define E2_HYBRID_THRESHOLD     30
@@ -1744,7 +1744,7 @@
    * It is advised to set X/Y/Z_HOME_BUMP_MM to 0.
    * M914 X/Y/Z to live tune the setting
    */
-  //#define SENSORLESS_HOMING // TMC2130 only
+  #define SENSORLESS_HOMING // TMC2130 only
 
   /**
    * Use StallGuard2 to probe the bed with the nozzle.
@@ -1755,8 +1755,8 @@
   //#define SENSORLESS_PROBING // TMC2130 only
 
   #if EITHER(SENSORLESS_HOMING, SENSORLESS_PROBING)
-    #define X_STALL_SENSITIVITY  8
-    #define Y_STALL_SENSITIVITY  8
+    #define X_STALL_SENSITIVITY  -10
+    #define Y_STALL_SENSITIVITY  -10
     //#define Z_STALL_SENSITIVITY  8
   #endif
 
@@ -1764,7 +1764,7 @@
    * Enable M122 debugging command for TMC stepper drivers.
    * M122 S0/1 will enable continous reporting.
    */
-  //#define TMC_DEBUG
+  #define TMC_DEBUG
 
   /**
    * You can set your own advanced settings by filling in predefined functions.
@@ -2092,7 +2092,7 @@
 /**
  * Disable all Volumetric extrusion options
  */
-//#define NO_VOLUMETRICS
+#define NO_VOLUMETRICS
 
 #if DISABLED(NO_VOLUMETRICS)
   /**
